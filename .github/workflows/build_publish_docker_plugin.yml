@@ -36,7 +36,7 @@ jobs:
       - name: Build and publish docker plugin
         shell: bash
         run: |
-          VER=${GITHUB_REF#refs/tags/}
+          VER=${GITHUB_REF##*/}
           PLUGIN_USER=${{ secrets.DOCKERHUB_USERNAME }}
           docker login --username ${{ secrets.DOCKER_HUB_USER }} \
                        --password-stdin <<< "${{ secrets.DOCKER_HUB_PASSWORD }}"
