@@ -289,6 +289,6 @@ jobs:
 
       - name: Inspect and Run Multi-Platform Image
         run: |
-          docker buildx imagetools inspect --raw ${{ env.REPO_NAME }}:${{ steps.meta.outputs.version }}
+          docker buildx imagetools inspect --raw ${{ secrets.DOCKERHUB_USERNAME }}/rclone:${{ steps.meta.outputs.version }}
           docker buildx imagetools inspect --raw ghcr.io/${{ env.REPO_NAME }}:${{ steps.meta.outputs.version }}
           docker run --rm ghcr.io/${{ env.REPO_NAME }}:${{ steps.meta.outputs.version }} version
