@@ -215,7 +215,7 @@ jobs:
           DOCKER_METADATA_ANNOTATIONS_LEVELS: index
         with:
           images: |
-            nehalchoy/rclone
+            ${{ secrets.DOCKERHUB_USERNAME }}/rclone
             ghcr.io/${{ env.REPO_NAME }}
           labels: |
             org.opencontainers.image.url=https://github.com/rclone/rclone/pkgs/container/rclone
