@@ -45,5 +45,5 @@ jobs:
               make docker-plugin PLUGIN_TAG=${PLUGIN_ARCH/\//-} PLUGIN_BASE_TAG=master
               make docker-plugin PLUGIN_TAG=${PLUGIN_ARCH/\//-}-${VER#v} PLUGIN_BASE_TAG=master
           done
-          make docker-plugin PLUGIN_ARCH=amd64 PLUGIN_TAG=latest PLUGIN_BASE_TAG=master
-          make docker-plugin PLUGIN_ARCH=amd64 PLUGIN_TAG=${VER#v} PLUGIN_BASE_TAG=master
+          make docker-plugin PLUGIN_ARCH=amd64 PLUGIN_TAG=master
+          make docker-plugin PLUGIN_ARCH=amd64 PLUGIN_TAG=${VER#v}
