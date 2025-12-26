@@ -37,13 +37,13 @@ jobs:
         shell: bash
         run: |
           VER=${GITHUB_REF#refs/tags/}
-          PLUGIN_USER=nehalchoy
+          PLUGIN_USER=${{ secrets.DOCKERHUB_USERNAME }}
           docker login --username ${{ secrets.DOCKER_HUB_USER }} \
                        --password-stdin <<< "${{ secrets.DOCKER_HUB_PASSWORD }}"
-          for PLUGIN_ARCH in amd64 arm64 arm/v7 arm/v6 ;do
+          for PLUGIN_ARCH in amd64 arm64 ;do
               export PLUGIN_USER PLUGIN_ARCH
-              make docker-plugin PLUGIN_TAG=${PLUGIN_ARCH/\//-}
-              make docker-plugin PLUGIN_TAG=${PLUGIN_ARCH/\//-}-${VER#v}
+              make docker-plugin PLUGIN_TAG=${PLUGIN_ARCH/\//-} PLUGIN_BASE_TAG=master
+              make docker-plugin PLUGIN_TAG=${PLUGIN_ARCH/\//-}-${VER#v} PLUGIN_BASE_TAG=master
           done
-          make docker-plugin PLUGIN_ARCH=amd64 PLUGIN_TAG=latest
-          make docker-plugin PLUGIN_ARCH=amd64 PLUGIN_TAG=${VER#v}
+          make docker-plugin PLUGIN_ARCH=amd64 PLUGIN_TAG=latest PLUGIN_BASE_TAG=master
+          make docker-plugin PLUGIN_ARCH=amd64 PLUGIN_TAG=${VER#v} PLUGIN_BASE_TAG=master
