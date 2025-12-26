@@ -58,7 +58,7 @@ jobs:
 
       - name: Set REPO_NAME Variable
         run: |
-          echo "REPO_NAME=nehalchoy/rclone" >> ${GITHUB_ENV}
+          echo "REPO_NAME=`echo ${{github.repository}} | tr '[:upper:]' '[:lower:]'`" >> ${GITHUB_ENV}
 
       - name: Set PLATFORM Variable
         run: |
@@ -206,7 +206,7 @@ jobs:
 
       - name: Set REPO_NAME Variable
         run: |
-          echo "REPO_NAME=nehalchoy/rclone" >> ${GITHUB_ENV}
+          echo "REPO_NAME=`echo ${{github.repository}} | tr '[:upper:]' '[:lower:]'`" >> ${GITHUB_ENV}
 
       - name: Extract Metadata (tags, labels) for Docker
         id: meta
@@ -215,7 +215,7 @@ jobs:
           DOCKER_METADATA_ANNOTATIONS_LEVELS: index
         with:
           images: |
-            ${{ env.REPO_NAME }}
+            nehalchoy/rclone
             ghcr.io/${{ env.REPO_NAME }}
           labels: |
             org.opencontainers.image.url=https://github.com/rclone/rclone/pkgs/container/rclone
